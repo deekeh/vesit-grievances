@@ -1,7 +1,11 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+
+// components
+import Header from './Header'
 
 // bootstrap
-import {Form, Button} from 'react-bootstrap'
+import {Container, Form, Button} from 'react-bootstrap'
 
 const LoginBox = (props) => {
     const userLogin = (e) => {
@@ -30,13 +34,15 @@ const LoginBox = (props) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control required type="password" placeholder={props.passwordText} />
                 </Form.Group>
-                <Button block type="submit" style={{
-                    color: '#E7B909',
-                    backgroundColor: '#B02A30',
-                    border: 'none'
-                }}>
-                    Login
-                </Button>
+                <Link to={props.to}>
+                    <Button block type="submit" style={{
+                        color: '#E7B909',
+                        backgroundColor: '#B02A30',
+                        border: 'none'
+                    }}>
+                        Login
+                    </Button>
+                </Link>
             </Form>
         </div>
     )
@@ -44,15 +50,20 @@ const LoginBox = (props) => {
 
 const Home = () => {
     return(
-        <div style={{
-            display: 'flex',
-            flexFlow: 'row wrap',
-            height: '100%',
-            justifyContent: 'space-evenly',
-            alignItems: 'center'
-        }}>
-            <LoginBox header='Student Login' emailText='Enter your @ves.ac.in ID' passwordText='Enter provided password' />
-            <LoginBox header='Admin Login' emailText='Enter Admin ID' passwordText='Enter admin password' />
+        <div>
+            <Header />
+            <Container>
+                <div style={{
+                    display: 'flex',
+                    flexFlow: 'row wrap',
+                    height: '100%',
+                    justifyContent: 'space-evenly',
+                    alignItems: 'center'
+                }}>
+                    <LoginBox to='/u' header='Student Login' emailText='Enter your @ves.ac.in ID' passwordText='Enter provided password' />
+                    <LoginBox to='/u' header='Admin Login' emailText='Enter Admin ID' passwordText='Enter admin password' />
+                </div>
+            </Container>
         </div>
     )
 }
