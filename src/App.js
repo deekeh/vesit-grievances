@@ -3,6 +3,7 @@ import React from 'react';
 // Components
 import Header from './components/Header';
 import Home from './components/Home';
+import UserMain from './components/UserMain'
 
 // Styling
 import './App.css'
@@ -14,7 +15,7 @@ const App = () => {
     <div className="App">
       <Header></Header>
       <Container>
-        <Home></Home>
+        <UserMain />
       </Container>
     </div>
   );
