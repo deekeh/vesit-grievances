@@ -43,10 +43,6 @@ const LoginBox = (props) => {
 }
 
 const Home = () => {
-
-    const adminLogin = (e) => {
-        e.preventDefault();
-    }
     return(
         <div style={{
             display: 'flex',
