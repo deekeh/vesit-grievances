@@ -1,7 +1,10 @@
 import React from 'react';
 
+// components
+import Header from './Header'
+
 // Bootstrap
-import {Button} from 'react-bootstrap';
+import {Container, Button} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const Post = (props) => {
@@ -34,37 +37,40 @@ const Post = (props) => {
 const UserMain = () => {
     return (
         <>
-            <div className='mt-4' id="head" style={{
-                display: 'flex',
-                flexFlow: 'row wrap',
-                justifyContent: 'space-between'
-            }}>
-                <h3 style={{
-                    display: 'inline-block'
+            <Header />
+            <Container>
+                <div className='mt-4' id="head" style={{
+                    display: 'flex',
+                    flexFlow: 'row wrap',
+                    justifyContent: 'space-between'
                 }}>
-                    Your Posts
-                </h3>
-                <Button style={{
-                    backgroundColor: "#E7B909",
-                    color: "#B02A30",
-                    border: 'none',
-                    marginLeft: 'auto'
-                }}>
-                    Add new post
-                </Button>
-            </div><hr/>
-            <Post
-                postHead='Change of lecture timings'
-                postCategory='Academics'
-                postDesc='This is a sample text. Lorem ipsum dolor sit amet.'
-                postStatus='Pending'
-            />
-            <Post
-                postHead='Lessening of break time'
-                postCategory='Time-table'
-                postDesc='This is a sample text. Lorem ipsum dolor sit amet.'
-                postStatus='Pending'
-            />
+                    <h3 style={{
+                        display: 'inline-block'
+                    }}>
+                        Your Posts
+                    </h3>
+                    <Button style={{
+                        backgroundColor: "#E7B909",
+                        color: "#B02A30",
+                        border: 'none',
+                        marginLeft: 'auto'
+                    }}>
+                        Add new post
+                    </Button>
+                </div><hr/>
+                <Post
+                    postHead='Change of lecture timings'
+                    postCategory='Academics'
+                    postDesc='This is a sample text. Lorem ipsum dolor sit amet.'
+                    postStatus='Pending'
+                />
+                <Post
+                    postHead='Lessening of break time'
+                    postCategory='Time-table'
+                    postDesc='This is a sample text. Lorem ipsum dolor sit amet.'
+                    postStatus='Pending'
+                />
+            </Container>
         </>
     )
 }
