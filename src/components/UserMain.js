@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from 'react-router-dom';
 // components
 import Header from './Header'
 
@@ -49,6 +49,7 @@ const UserMain = () => {
                     }}>
                         Your Posts
                     </h3>
+                    <Link to={"./src/components/spost.js"}>
                     <Button style={{
                         backgroundColor: "#E7B909",
                         color: "#B02A30",
@@ -57,6 +58,7 @@ const UserMain = () => {
                     }}>
                         Add new post
                     </Button>
+                    </Link>
                 </div><hr/>
                 <Post
                     postHead='Change of lecture timings'
