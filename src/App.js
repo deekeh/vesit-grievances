@@ -6,7 +6,7 @@ import Home from './components/Home';
 
 // Styling
 import './App.css'
-import {Container} from 'react-bootstrap'
+import {Container, Row} from 'react-bootstrap'
 
 function App() {
   return (
