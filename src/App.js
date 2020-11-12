@@ -6,9 +6,10 @@ import Home from './components/Home';
 
 // Styling
 import './App.css'
-import {Container, Row} from 'react-bootstrap'
+import {Container} from 'react-bootstrap'
 
-function App() {
+
+const App = () => {
   return (
     <div className="App">
       <Header></Header>

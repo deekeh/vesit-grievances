@@ -9,9 +9,9 @@ const Header = () => {
             backgroundColor: "#B02A30",
             height: '150px'
         }}>
- <img src={logo} alt="vesit logo"
-      width='150px'
-      height='150px'></img>
+    <img src={logo} alt="vesit logo"
+        width='150px'
+    />
             <Navbar.Brand className='ml-auto' style={{
                 fontSize: '1.7rem'
             }}>
