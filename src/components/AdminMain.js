@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
 
 // components
 import Header from './Header'
@@ -15,11 +16,19 @@ const TableRow = (props) => {
             <td>{props.category}</td>
             <td>{props.studentName}</td>
             <td>
-                <span
-                    className={(props.status==='Success') ? 'btn btn-success btn-block' : (props.status==='Awaiting Response') ? 'btn btn-warning btn-block' : 'btn btn-danger btn-block'}
-                >
-                    {props.status}
-                </span>
+                <Link to={{
+                    pathname: '/admin/post',
+                    data: {
+                        user: props.studentName,
+                        description: props.description
+                    }
+                }}>
+                    <button
+                        className={(props.status==='Success') ? 'btn btn-success btn-block' : (props.status==='Awaiting Response') ? 'btn btn-warning btn-block' : 'btn btn-danger btn-block'}
+                    >
+                        {props.status}
+                    </button>
+                </Link>
             </td>
         </tr>
     )
@@ -30,21 +39,21 @@ const AdminMain = () => {
         {
             title: 'Change of time table',
             description: 'Lorem ipsum dolor sit amet',
-            category: 'Acedemics',
+            category: 'Academics',
             studentName: 'Abhishek Mishra',
             status: 'Success'
         },
         {
             title: 'Change of time table',
             description: 'Lorem ipsum dolor sit amet',
-            category: 'Acedemics',
+            category: 'Placements',
             studentName: 'Sarvesh Dalvi',
             status: 'Awaiting Response'
         },
         {
             title: 'Change of time table',
             description: 'Lorem ipsum dolor sit amet',
-            category: 'Acedemics',
+            category: 'Examination',
             studentName: 'Devansh Tailor',
             status: 'Pending'
         },

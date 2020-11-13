@@ -8,6 +8,7 @@ import StudentMain from './components/StudentMain'
 import StudentAddPost from './components/StudentAddPost'
 import Resolve from './components/StudentPostResolve'
 import AdminMain from './components/AdminMain'
+import AdminPostResolve from './components/AdminPostResolve'
 
 // Styling
 import './App.css'
@@ -27,6 +28,7 @@ const App = () => {
           <Route path='/student/resolve' exact component={Resolve} />
           {/* admin section */}
           <Route path='/admin' exact component={AdminMain} />
+          <Route path='/admin/post' exact component={AdminPostResolve} />
         </Switch>
       </Router>
     </div>

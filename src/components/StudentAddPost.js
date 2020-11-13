@@ -31,7 +31,7 @@ return (
                         <Form.Label>Department</Form.Label>
                         <Form.Control required type="text"placeholder ="Enter Department"></Form.Control>    
                     </Form.Group>
-                    <Link to={""}>
+                    <Link to='/student'>
                         <Button block type="submit"
                         style={{
                             color: '#E7B909',

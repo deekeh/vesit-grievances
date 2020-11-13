@@ -49,7 +49,7 @@ const StudentMain = () => {
                     }}>
                         Your Posts
                     </h3>
-                    <Link to={"./src/components/spost.js"}>
+                    <Link to="/student/add-post">
                     <Button style={{
                         backgroundColor: "#E7B909",
                         color: "#B02A30",
