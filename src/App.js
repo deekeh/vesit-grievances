@@ -6,6 +6,8 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from './components/Home';
 import UserMain from './components/UserMain'
 import Spost from './components/spost'
+import Resolve from './components/resolve'
+
 // Styling
 import './App.css'
 // import {Container} from 'react-bootstrap'
@@ -19,7 +21,7 @@ const App = () => {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/sp' exact component={UserMain} />
-          <Route path='/u' exact component={Spost} />
+          <Route path='/u' exact component={Resolve} />
         </Switch>
       </Router>
     </div>
