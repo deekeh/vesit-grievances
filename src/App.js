@@ -4,15 +4,8 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 // Components
 // import Header from './components/Header';
 import Home from './components/Home';
-<<<<<<< HEAD
 import StudentMain from './components/StudentMain'
 import StudentAddPost from './components/StudentAddPost'
-=======
-import UserMain from './components/UserMain'
-import Spost from './components/spost'
-import Resolve from './components/resolve'
-
->>>>>>> c3ae4cb514abe78afda45d977c5d9bb6183f56a5
 // Styling
 import './App.css'
 // import {Container} from 'react-bootstrap'
