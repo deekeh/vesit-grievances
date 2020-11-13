@@ -9,13 +9,21 @@ import { Container, Button } from "react-bootstrap";
 const MessageBox = (props) => {
     return (
         <div className='mb-4'>
-            <h5 className='text-danger p-2 mb-0 d-inline-block border border-warning border-bottom-0 rounded-top' style={{
-                backgroundColor: '#FAF1CD'
+            <h5 className='text-danger p-2 mb-0 d-inline-block' style={{
+                backgroundColor: '#FAF1CD',
+                border: 'solid 1px #E7B909',
+                borderBottom: 'hidden',
+                borderTopLeftRadius: '3px',
+                borderTopRightRadius: '3px'
             }}>
                 <i>{props.userName}'s Message</i>
             </h5>
-            <div className='d-block p-4 mt-0 d-inline-block border border-warning rounded-bottom rounded-right' style={{
-                backgroundColor: '#FAF1CD'
+            <div className='d-block p-4 mt-0 d-inline-block' style={{
+                backgroundColor: '#FAF1CD',
+                border: 'solid 1px #E7B909',
+                borderBottomLeftRadius: '3px',
+                borderBottomRightRadius: '3px',
+                borderTopRightRadius: '3px'
             }}>
                 {props.userMessage}
             </div>
