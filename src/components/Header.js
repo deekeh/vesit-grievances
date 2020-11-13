@@ -4,10 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import logo from './img/logo.png'
 const Header = () => {
     return (
-        <Navbar variant='danger' style={{
+        <Navbar className="pl-0" variant='danger' style={{
             color: "#E7B909",
             backgroundColor: "#B02A30",
-            height: '150px'
+            // height: '150px',
+            height: '18vh'
         }}>
     <img src={logo} alt="vesit logo"
         width='150px'

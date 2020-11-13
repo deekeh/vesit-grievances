@@ -4,8 +4,8 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 // Components
 // import Header from './components/Header';
 import Home from './components/Home';
-import UserMain from './components/UserMain'
-import Spost from './components/spost'
+import StudentMain from './components/StudentMain'
+import StudentAddPost from './components/StudentAddPost'
 // Styling
 import './App.css'
 // import {Container} from 'react-bootstrap'
@@ -18,8 +18,8 @@ const App = () => {
       <Router>
         <Switch>
           <Route path='/' exact component={Home} />
-          <Route path='/sp' exact component={UserMain} />
-          <Route path='/u' exact component={Spost} />
+          <Route path='/student' exact component={StudentMain} />
+          <Route path='/student/add-post' exact component={StudentAddPost} />
         </Switch>
       </Router>
     </div>

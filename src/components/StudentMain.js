@@ -34,7 +34,7 @@ const Post = (props) => {
     )
 }
 
-const UserMain = () => {
+const StudentMain = () => {
     return (
         <>
             <Header />
@@ -77,4 +77,4 @@ const UserMain = () => {
     )
 }
 
-export default UserMain;
+export default StudentMain;
