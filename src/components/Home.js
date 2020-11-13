@@ -57,6 +57,7 @@ const Home = () => {
                     display: 'flex',
                     flexFlow: 'row wrap',
                     height: '100%',
+                    minHeight: '82vh',
                     justifyContent: 'space-evenly',
                     alignItems: 'center'
                 }}>

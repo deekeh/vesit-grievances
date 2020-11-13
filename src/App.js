@@ -6,6 +6,8 @@ import {HashRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from './components/Home';
 import StudentMain from './components/StudentMain'
 import StudentAddPost from './components/StudentAddPost'
+import Resolve from './components/StudentPostResolve'
+
 // Styling
 import './App.css'
 // import {Container} from 'react-bootstrap'
@@ -18,8 +20,12 @@ const App = () => {
       <Router>
         <Switch>
           <Route path='/' exact component={Home} />
+          {/* student section */}
           <Route path='/student' exact component={StudentMain} />
           <Route path='/student/add-post' exact component={StudentAddPost} />
+          <Route path='/student/resolve' exact component={Resolve} />
+          {/* admin section */}
+          
         </Switch>
       </Router>
     </div>
