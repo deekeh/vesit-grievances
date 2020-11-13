@@ -62,7 +62,7 @@ const Home = () => {
                     alignItems: 'center'
                 }}>
                     <LoginBox to='/student' header='Student Login' emailText='Enter your @ves.ac.in ID' passwordText='Enter provided password' />
-                    <LoginBox to='/student' header='Admin Login' emailText='Enter Admin ID' passwordText='Enter admin password' />
+                    <LoginBox to='/admin' header='Admin Login' emailText='Enter Admin ID' passwordText='Enter admin password' />
                 </div>
             </Container>
         </div>

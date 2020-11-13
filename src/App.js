@@ -7,6 +7,7 @@ import Home from './components/Home';
 import StudentMain from './components/StudentMain'
 import StudentAddPost from './components/StudentAddPost'
 import Resolve from './components/StudentPostResolve'
+import AdminMain from './components/AdminMain'
 
 // Styling
 import './App.css'
@@ -25,7 +26,7 @@ const App = () => {
           <Route path='/student/add-post' exact component={StudentAddPost} />
           <Route path='/student/resolve' exact component={Resolve} />
           {/* admin section */}
-          
+          <Route path='/admin' exact component={AdminMain} />
         </Switch>
       </Router>
     </div>
