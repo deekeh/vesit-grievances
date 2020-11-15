@@ -23,7 +23,9 @@ const Post = (props) => {
       </div>
       <div className="post-desc mt-2">{props.postDesc}</div>
       <div className="post-status d-flex mt-2">
-        <div className="btn btn-warning ml-auto">{props.postStatus}</div>
+        <Link className="btn btn-warning ml-auto" to="/student/resolve">
+          {props.postStatus}
+        </Link>
       </div>
     </div>
   );
