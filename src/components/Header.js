@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "./img/logo.png";
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <Navbar
@@ -23,6 +24,13 @@ const Header = () => {
       >
         VESIT Student Grievances
       </Navbar.Brand>
+      <button block type="submit" 
+      style={{
+                backgroundColor: "#E7B909",
+                color: "#B02A30",
+                border: "none",
+                marginTop:'auto',  
+      }}>Logout</button>
     </Navbar>
   );
 };
