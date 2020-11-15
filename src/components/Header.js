@@ -29,6 +29,7 @@ const Header = () => {
                 backgroundColor: "#E7B909",
                 color: "#B02A30",
                 border: "none",
+                padding:'5px',
                 marginTop:'auto',  
       }}>Logout</Link>
     </Navbar>
