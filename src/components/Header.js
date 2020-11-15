@@ -24,13 +24,13 @@ const Header = () => {
       >
         VESIT Student Grievances
       </Navbar.Brand>
-      <button block type="submit" 
+      <Link to = '/' 
       style={{
                 backgroundColor: "#E7B909",
                 color: "#B02A30",
                 border: "none",
                 marginTop:'auto',  
-      }}>Logout</button>
+      }}>Logout</Link>
     </Navbar>
   );
 };
