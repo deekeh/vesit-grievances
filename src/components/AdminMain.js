@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import {Button, ButtonGroup, DropdownButton, Dropdown}  from "react-bootstrap";
 // components
 import Header from "./Header";
 
@@ -92,7 +92,14 @@ const AdminMain = () => {
             <button className="btn btn-danger" onClick={getPosts}>
               Get Posts
             </button>
-          </div>
+            <DropdownButton as={ButtonGroup} title="Sort By" id="bg-vertical-dropdown-1"style={{paddingInline:"50px"
+             }}> 
+    <Dropdown.Item eventKey="1">Acedemics</Dropdown.Item>
+    <Dropdown.Item eventKey="2">Fees</Dropdown.Item>
+    <Dropdown.Item eventKey="3">Examination</Dropdown.Item>
+    <Dropdown.Item eventKey="4">Placements</Dropdown.Item>
+    </DropdownButton>
+            </div>
           <Table responsive bordered hover>
             <thead>
               <tr>
