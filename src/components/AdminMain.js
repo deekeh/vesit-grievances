@@ -101,7 +101,7 @@ const AdminMain = () => {
     <Dropdown.Item onClick={getPosts} eventKey="4">Placements</Dropdown.Item>
     </DropdownButton>
             </div>
-          <Table responsive bordered hover>
+          <Table responsive bordered hover striped="True">
             <thead>
               <tr>
                 <th>No.</th>
