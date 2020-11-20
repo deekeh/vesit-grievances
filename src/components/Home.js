@@ -84,6 +84,24 @@ const Home = () => {
             emailText="Enter Admin ID"
             passwordText="Enter admin password"
           />
+          <div
+            style={{
+              width: "100%",
+            }}
+          >
+            <Link to="/student/register">
+              <button
+                className="btn btn-danger btn-lg btn-block"
+                style={{
+                  color: "#E7B909",
+                  backgroundColor: "#B02A30",
+                  border: "none",
+                }}
+              >
+                Register as a new student
+              </button>
+            </Link>
+          </div>
         </div>
       </Container>
     </div>
