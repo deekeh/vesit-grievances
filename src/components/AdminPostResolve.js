@@ -72,19 +72,17 @@ const AdminPostResolve = (props) => {
         <div className="d-flex mb-4" style={{
           paddingTop:"40px"
         }}>
-
-          <DropdownButton as={ButtonGroup} title ="Set Priority" id="bg-vertical-dropdown-1"style={{
-          paddingInlineStart:"350px"
-         }}> 
+        <div className="ml-auto">
+          <DropdownButton as={ButtonGroup} title ="Set Priority" id="bg-vertical-dropdown-1"className="mr-2">
           <Dropdown.Item eventKey="1">Department</Dropdown.Item>
           <Dropdown.Item eventKey="2">College</Dropdown.Item>
           <Dropdown.Item eventKey="3">University</Dropdown.Item>
-          <Dropdown.Item eventKey="4">Priority</Dropdown.Item>
           </DropdownButton>
 
-          <Button className="btn btn-danger btn-lg px-5 ml-auto">
+          <Button className="btn btn-danger btn-lg px-5 ">
             Add Reply
           </Button>
+          </div>
         </div>
       </Container>
     </>
