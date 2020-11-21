@@ -1,13 +1,41 @@
+require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const app = express();
 
+const MongoClient = require("mongodb").MongoClient;
+// const client = new MongoClient(process.env.DB_URL);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
 
-app.post("/register", (req, res) => {
-  res.send({ status: "success" });
-  // console.log(req.body);
+app.post("/register", async (req, res) => {
+  const userData = {
+    name: req.body.name,
+    email: req.body.email,
+    password: req.body.password,
+    department: req.body.department,
+    batch: req.body.batch,
+  };
+
+  try {
+    MongoClient.connect(
+      process.env.DB_URL,
+      { useUnifiedTopology: true },
+      (err, client) => {
+        if (err) return console.log(err);
+        const db = client.db("vesit");
+        const collection = db.collection("students");
+        collection.insertOne(userData, (err, result) => {
+          if (err) return console.log(err);
+        });
+        res.status(201).json({
+          msg: "Done",
+        });
+      }
+    );
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 const PORT = 2000 || process.env.PORT;

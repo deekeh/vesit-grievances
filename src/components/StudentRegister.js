@@ -45,7 +45,7 @@ const StudentRegister = () => {
             <Form.Row>
               <Form.Group
                 as={Col}
-                className="md-6 sm-12"
+                className="col-md-6"
                 controlId="studentEmail"
               >
                 <Form.Label>Email ID</Form.Label>
@@ -58,7 +58,7 @@ const StudentRegister = () => {
               </Form.Group>
               <Form.Group
                 as={Col}
-                className="md-6 sm-12"
+                className="col-md-6"
                 controlId="studentPassword"
               >
                 <Form.Label>Password</Form.Label>
@@ -71,14 +71,14 @@ const StudentRegister = () => {
               </Form.Group>
             </Form.Row>
             <Form.Row>
-              <Form.Group as={Col}>
+              <Form.Group as={Col} className="col-md-6">
                 <Form.Label>Department</Form.Label>
                 <Form.Control as="select" defaultValue="Engg" name="department">
                   <option>MCA</option>
                   <option>Engg</option>
                 </Form.Control>
               </Form.Group>
-              <Form.Group as={Col}>
+              <Form.Group as={Col} className="col-md-6">
                 <Form.Label>Batch</Form.Label>
                 <Form.Control as="select" defaultValue="2020" name="batch">
                   <option>2020</option>
