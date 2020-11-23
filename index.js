@@ -8,6 +8,8 @@ const MongoClient = require("mongodb").MongoClient;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
 
+const jwt = require("jsonwebtoken");
+
 app.post("/register", async (req, res) => {
   const userData = {
     name: req.body.name,
@@ -61,7 +63,13 @@ app.post("/student/login", (req, res) => {
               (err, result) => {
                 if (err) return console.log(err);
                 if (result == null) res.send({ status: "invalid login" });
-                else res.send({ status: "success" });
+                else {
+                  const accessToken = jwt.sign(
+                    { email: loginData.email },
+                    process.env.ACCESS_TOKEN_SECRET
+                  );
+                  res.send({ status: "success", accessToken });
+                }
                 client.close();
               }
             );
