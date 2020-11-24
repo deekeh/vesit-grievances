@@ -1,15 +1,74 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 
 // components
 import Header from "./Header";
 
 // bootstrap
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Modal } from "react-bootstrap";
 
 const LoginBox = (props) => {
-  const userLogin = (e) => {
+  const [show, setShow] = useState(false);
+  const [modalData, setModalData] = useState({
+    header: "",
+    body: "",
+    loginSuccess: false,
+  });
+  const handleClose = () => setShow(false);
+  const handleShow = (header, body, loginSuccess) => {
+    setModalData({
+      header,
+      body,
+      loginSuccess,
+    });
+    setShow(true);
+  };
+
+  const userLogin = async (e) => {
     e.preventDefault();
+    const userData = {
+      email: e.target.email.value,
+      password: e.target.password.value,
+    };
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    };
+    const res = await fetch(props.to, options);
+    await res.json().then((result) => {
+      if (result.status === "success") {
+        console.log(result);
+        handleShow(
+          "Login Success",
+          "Login successful, go to your dashboard now.",
+          true
+        );
+      } else if (result.status === "user does not exist") {
+        console.log(result);
+        handleShow(
+          "Login Failure",
+          "The email ID was not found in our database. Please register as a student first.",
+          false
+        );
+      } else if (result.status === "invalid login") {
+        console.log(result);
+        handleShow(
+          "Login Failure",
+          "The credentials you used were incorrect. Please try again.",
+          true
+        );
+      } else {
+        handleShow(
+          "Login Failure",
+          "Login failed, there was some problem with the server.",
+          false
+        );
+      }
+    });
+    // if (resJson.status === "success") return <Redirect to="/student" />;
   };
 
   return (
@@ -28,7 +87,12 @@ const LoginBox = (props) => {
       <Form onSubmit={userLogin}>
         <Form.Group controlId="studentEmail">
           <Form.Label>VESIT Email ID</Form.Label>
-          <Form.Control required type="email" placeholder={props.emailText} />
+          <Form.Control
+            required
+            type="email"
+            name="email"
+            placeholder={props.emailText}
+          />
         </Form.Group>
 
         <Form.Group controlId="studentPassword">
@@ -36,23 +100,33 @@ const LoginBox = (props) => {
           <Form.Control
             required
             type="password"
+            name="password"
             placeholder={props.passwordText}
           />
         </Form.Group>
-        <Link to={props.to}>
-          <Button
-            block
-            type="submit"
-            style={{
-              color: "#E7B909",
-              backgroundColor: "#B02A30",
-              border: "none",
-            }}
-          >
-            Login
-          </Button>
-        </Link>
+        <Button
+          block
+          type="submit"
+          style={{
+            color: "#E7B909",
+            backgroundColor: "#B02A30",
+            border: "none",
+          }}
+        >
+          Login
+        </Button>
       </Form>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>{modalData.header}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modalData.body}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };
@@ -73,13 +147,13 @@ const Home = () => {
           }}
         >
           <LoginBox
-            to="/student"
+            to="/student/login"
             header="Student Login"
             emailText="Enter your @ves.ac.in ID"
             passwordText="Enter provided password"
           />
           <LoginBox
-            to="/admin"
+            to="/admin/login"
             header="Admin Login"
             emailText="Enter Admin ID"
             passwordText="Enter admin password"
