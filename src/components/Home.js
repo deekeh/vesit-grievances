@@ -58,7 +58,7 @@ const LoginBox = (props) => {
         handleShow(
           "Login Failure",
           "The credentials you used were incorrect. Please try again.",
-          true
+          false
         );
       } else {
         handleShow(
@@ -122,9 +122,18 @@ const LoginBox = (props) => {
         </Modal.Header>
         <Modal.Body>{modalData.body}</Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={handleClose}>
+          {modalData.loginSuccess ? (
+            <Link className="btn btn-danger" to="/student">
+              Go to DashBoard
+            </Link>
+          ) : (
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+          )}
+          {/* <Button variant="danger" onClick={handleClose}>
             Close
-          </Button>
+          </Button> */}
         </Modal.Footer>
       </Modal>
     </div>
