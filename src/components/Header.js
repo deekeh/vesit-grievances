@@ -1,9 +1,14 @@
 import React from "react";
-import { Navbar } from "react-bootstrap";
+import { Navbar, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "./img/logo.png";
 import { Link } from "react-router-dom";
 const Header = () => {
+  const logout = () => {
+    localStorage.clear();
+    console.log("logged out");
+    // this.props.history.push("/");
+  };
   return (
     <Navbar
       className="pl-0"
@@ -24,14 +29,23 @@ const Header = () => {
       >
         VESIT Student Grievances
       </Navbar.Brand>
-      <Link to = '/' 
-      style={{
-                backgroundColor: "#E7B909",
-                color: "#B02A30",
-                border: "none",
-                padding:'5px',
-                marginTop:'auto',  
-      }}>Logout</Link>
+      {localStorage.getItem("accessToken") == null ? (
+        ""
+      ) : (
+        <Link
+          to="/"
+          onClick={logout}
+          style={{
+            backgroundColor: "#E7B909",
+            color: "#B02A30",
+            border: "none",
+            padding: "5px",
+            marginTop: "auto",
+          }}
+        >
+          Logout
+        </Link>
+      )}
     </Navbar>
   );
 };

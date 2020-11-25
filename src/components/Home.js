@@ -41,6 +41,7 @@ const LoginBox = (props) => {
     await res.json().then((result) => {
       if (result.status === "success") {
         console.log(result);
+        localStorage.setItem("accessToken", result.accessToken);
         handleShow(
           "Login Success",
           "Login successful, go to your dashboard now.",
