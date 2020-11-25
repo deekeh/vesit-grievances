@@ -51,7 +51,7 @@ const LoginBox = (props) => {
         console.log(result);
         handleShow(
           "Login Failure",
-          "The email ID was not found in our database. Please register as a student first.",
+          "The email ID was not found in our database.",
           false
         );
       } else if (result.status === "invalid login") {
@@ -124,7 +124,7 @@ const LoginBox = (props) => {
         <Modal.Body>{modalData.body}</Modal.Body>
         <Modal.Footer>
           {modalData.loginSuccess ? (
-            <Link className="btn btn-danger" to="/student">
+            <Link className="btn btn-danger" to={props.dashboard}>
               Go to DashBoard
             </Link>
           ) : (
@@ -158,12 +158,14 @@ const Home = () => {
         >
           <LoginBox
             to="/student/login"
+            dashboard="/student"
             header="Student Login"
             emailText="Enter your @ves.ac.in ID"
             passwordText="Enter provided password"
           />
           <LoginBox
             to="/admin/login"
+            dashboard="/admin"
             header="Admin Login"
             emailText="Enter Admin ID"
             passwordText="Enter admin password"

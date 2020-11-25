@@ -80,5 +80,50 @@ app.post("/student/login", (req, res) => {
   );
 });
 
+// admin
+app.post("/admin/login", (req, res) => {
+  const loginData = {
+    email: req.body.email,
+    password: req.body.password,
+  };
+  MongoClient.connect(
+    process.env.DB_URL,
+    { useUnifiedTopology: true },
+    (err, client) => {
+      if (err) return console.log(err);
+      const db = client.db("vesit");
+      db.collection("admins").findOne(
+        { email: loginData.email },
+        (err, result) => {
+          if (err) return console.log(err);
+          if (result == null) res.send({ status: "user does not exist" });
+          else {
+            let db = client.db("vesit");
+            db.collection("admins").findOne(
+              { email: loginData.email, password: loginData.password },
+              (err, result) => {
+                if (err) return console.log(err);
+                if (result == null) res.send({ status: "invalid login" });
+                else {
+                  const accessToken = jwt.sign(
+                    { email: loginData.email },
+                    process.env.ACCESS_TOKEN_SECRET
+                  );
+                  res.send({
+                    status: "success",
+                    accessToken,
+                    name: result.name,
+                  });
+                }
+                client.close();
+              }
+            );
+          }
+        }
+      );
+    }
+  );
+});
+
 const PORT = 2000 || process.env.PORT;
 app.listen(PORT, console.log(`Server started at port ${PORT}`));
