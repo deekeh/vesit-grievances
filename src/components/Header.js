@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Button } from "react-bootstrap";
+import { Navbar } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logo from "./img/logo.png";
 import { Link } from "react-router-dom";
@@ -22,12 +22,14 @@ const Header = () => {
     >
       <img src={logo} alt="vesit logo" width="150px" />
       <Navbar.Brand
-        className="ml-auto"
+        className="ml-auto text-center"
         style={{
           fontSize: "1.7rem",
         }}
       >
-        VESIT Student Grievances
+        VESIT <wbr />
+        Student <wbr />
+        Grievances
       </Navbar.Brand>
       {localStorage.getItem("accessToken") == null ? (
         ""
@@ -35,12 +37,12 @@ const Header = () => {
         <Link
           to="/"
           onClick={logout}
+          className="btn my-auto"
           style={{
             backgroundColor: "#E7B909",
             color: "#B02A30",
             border: "none",
             padding: "5px",
-            marginTop: "auto",
           }}
         >
           Logout
