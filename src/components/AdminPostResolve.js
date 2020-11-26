@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 // components
 import Header from "./Header";
 
@@ -43,6 +43,9 @@ const AdminPostResolve = (props) => {
       <Header />
       <Container>
         <header className="mt-2">
+          <Link to ="/AdminMain">
+            <Button>Back</Button>
+          </Link>
           <h3>Change of lecture timings</h3>
         </header>
         <hr />

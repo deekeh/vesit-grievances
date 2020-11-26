@@ -80,6 +80,34 @@ app.post("/student/login", (req, res) => {
   );
 });
 
+//Add-Post
+app.post("/student/add-post", async (req, res) => {
+  const PostData = {
+    Subject: req.body.Subject,
+    Description: req.body.Description,
+    Department: req.body.Department,
+  };
+  try {
+    MongoClient.connect(
+      process.env.DB_URL,
+      { useUnifiedTopology: true },
+      (err, client) => {
+        if (err) return console.log(err);
+        const db = client.db("vesit");
+        const collection = db.collection("studentPosts");
+        collection.insertOne(PostData, (err) => {
+          if (err) return console.log(err);
+        });
+        res.status(201).json({
+          msg: "Done",
+        });
+      }
+    );
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 // admin
 app.post("/admin/login", (req, res) => {
   const loginData = {

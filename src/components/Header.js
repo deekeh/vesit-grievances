@@ -37,7 +37,7 @@ const Header = () => {
         <Link
           to="/"
           onClick={logout}
-          className="btn my-auto"
+          className="btn mt-auto"
           style={{
             backgroundColor: "#E7B909",
             color: "#B02A30",
