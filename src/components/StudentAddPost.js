@@ -50,15 +50,6 @@ const StudentAddPost = () => {
                 placeholder="Enter Subject"
               ></Form.Control>
             </Form.Group>
-            <Form.Group as={Col} className="col-md-6" controlId="Description">
-              {/* <Form.Label>description</Form.Label>
-              <Form.Control
-                required
-                as="textarea"
-                type="text"
-                placeholder="Enter Description"
-              ></Form.Control> */}
-            </Form.Group>
             <Form.Group as={Col} className="col-md-6" controlId="Department">
               <Form.Label>Department</Form.Label>
               <Form.Control

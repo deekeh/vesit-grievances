@@ -18,13 +18,22 @@ const AccessRestrictionModal = (props) => {
   return (
     <>
       {/* Show access restriction modal if user is not logged in */}
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard="true">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard="true"
+        size="lg"
+        centered
+      >
         <Modal.Header>
           <Modal.Title>Access Restricted</Modal.Title>
         </Modal.Header>
         <Modal.Body>{props.body}</Modal.Body>
         <Modal.Footer>
-          <Link to="/">Login</Link>
+          <Link to="/" className="btn btn-danger">
+            Login
+          </Link>
         </Modal.Footer>
       </Modal>
     </>
