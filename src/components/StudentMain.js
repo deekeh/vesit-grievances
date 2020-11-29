@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // components
 import Header from "./Header";
+import AccessRestrictionModal from "./AccessRestrictionModal";
 
 // Bootstrap
 import { Container, Button } from "react-bootstrap";
@@ -32,6 +33,14 @@ const Post = (props) => {
 };
 
 const StudentMain = () => {
+  // const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
+
+  // useEffect(() => {
+  //   if (localStorage.getItem("accessToken") == null) handleShow();
+  // }, []);
+
   return (
     <>
       <Header />
@@ -79,6 +88,25 @@ const StudentMain = () => {
           postStatus="Pending"
         />
       </Container>
+
+      {/* Show access restriction modal if user is not logged in */}
+      {/* <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard="false"
+      >
+        <Modal.Header>
+          <Modal.Title>Access Restricted</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          You are not logged in. Please log in as a student to view dashboard.
+        </Modal.Body>
+        <Modal.Footer>
+          <Link to="/">Login</Link>
+        </Modal.Footer>
+      </Modal> */}
+      <AccessRestrictionModal body="You are not logged in. Please log in as a student to view dashboard." />
     </>
   );
 };

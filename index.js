@@ -82,30 +82,35 @@ app.post("/student/login", (req, res) => {
 
 //Add-Post
 app.post("/student/add-post", async (req, res) => {
-  const PostData = {
-    Subject: req.body.Subject,
-    Description: req.body.Description,
-    Department: req.body.Department,
-  };
-  try {
-    MongoClient.connect(
-      process.env.DB_URL,
-      { useUnifiedTopology: true },
-      (err, client) => {
-        if (err) return console.log(err);
-        const db = client.db("vesit");
-        const collection = db.collection("studentPosts");
-        collection.insertOne(PostData, (err) => {
+  const accessToken = req.body.accessToken;
+  jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(401);
+    const postData = {
+      subject: req.body.subject,
+      description: req.body.description,
+      department: req.body.department,
+      creator: user.email,
+    };
+    try {
+      MongoClient.connect(
+        process.env.DB_URL,
+        { useUnifiedTopology: true },
+        (err, client) => {
           if (err) return console.log(err);
-        });
-        res.status(201).json({
-          msg: "Done",
-        });
-      }
-    );
-  } catch (e) {
-    console.log(e);
-  }
+          const db = client.db("vesit");
+          const collection = db.collection("studentPosts");
+          collection.insertOne(postData, (err) => {
+            if (err) return console.log(err);
+          });
+          res.status(201).json({
+            msg: "Done",
+          });
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  });
 });
 
 // admin

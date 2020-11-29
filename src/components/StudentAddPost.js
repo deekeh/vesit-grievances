@@ -1,17 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Header from "./Header";
 
 // bootstrap
 import { Form, Button, Container, Col } from "react-bootstrap";
+import AccessRestrictionModal from "./AccessRestrictionModal";
 
 const StudentAddPost = () => {
-  const AddPost = async (e) => {
+  const addPost = async (e) => {
     e.preventDefault();
     const formData = {
-      Subject: e.target.Subject.value,
-      Description: e.target.Description.value,
-      Department: e.target.Department.value,
+      subject: e.target.subject.value,
+      description: e.target.description.value,
+      department: e.target.department.value,
+      accessToken: localStorage.getItem("accessToken"),
     };
     const options = {
       method: "POST",
@@ -21,7 +23,7 @@ const StudentAddPost = () => {
       body: JSON.stringify(formData),
     };
 
-    const res = await fetch("/add-post", options);
+    const res = await fetch("/student/add-post", options);
     console.log(res);
   };
   return (
@@ -37,11 +39,12 @@ const StudentAddPost = () => {
             Create New Post
           </h3>
         </div>
-        <Form method="post" onSubmit={AddPost}>
+        <Form method="post" onSubmit={addPost}>
           <Form.Row>
             <Form.Group as={Col} className="col-md-6" controlId="Subject">
               <Form.Label>Subject</Form.Label>
               <Form.Control
+                name="subject"
                 required
                 type="text"
                 placeholder="Enter Subject"
@@ -59,6 +62,7 @@ const StudentAddPost = () => {
             <Form.Group as={Col} className="col-md-6" controlId="Department">
               <Form.Label>Department</Form.Label>
               <Form.Control
+                name="department"
                 required
                 type="text"
                 placeholder="Enter Department"
@@ -67,6 +71,7 @@ const StudentAddPost = () => {
           </Form.Row>
           <Form.Label>Description</Form.Label>
           <Form.Control
+            name="description"
             required
             as="textarea"
             type="text"
@@ -85,6 +90,7 @@ const StudentAddPost = () => {
           </Button>
         </Form>
       </Container>
+      <AccessRestrictionModal body="You are not logged in. Please log in as a student to add post." />
     </>
   );
 };

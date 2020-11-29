@@ -1,7 +1,9 @@
 import React from "react";
 //import {Link} from 'react-router-dom';
+
+// components
 import Header from "./Header";
-//import Post from './UserMain'
+import AccessRestrictionModal from "./AccessRestrictionModal";
 
 // bootstrap
 import { Container } from "react-bootstrap";
@@ -44,6 +46,7 @@ const Resolve = () => {
         <hr />
         <div className="btn btn-success">Resolved</div>
       </Container>
+      <AccessRestrictionModal body="You are not logged in. Please log in as a student to view your post." />
     </>
   );
 };
