@@ -1,9 +1,9 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "./Header";
 
 // bootstrap
-import { Form, Button, Container, Col } from "react-bootstrap";
+import { Form, Container, Col, Button } from "react-bootstrap";
 import AccessRestrictionModal from "./AccessRestrictionModal";
 
 const StudentAddPost = () => {
@@ -74,7 +74,7 @@ const StudentAddPost = () => {
           <Form.Group controlId="Priority">
             <br></br>
             <Form.Label>Set Priority</Form.Label>
-            <Form.Control as="select" required>
+            <Form.Control as="select" required placeholder="Select Priority">
               <option>Department</option>
               <option>College</option>
               <option>University</option>
@@ -82,6 +82,7 @@ const StudentAddPost = () => {
           </Form.Group>
           <br></br>
           <Button
+            className="btn btn-danger btn-block"
             block
             type="submit"
             style={{
@@ -92,6 +93,21 @@ const StudentAddPost = () => {
           >
             Submit
           </Button>
+          <br></br>
+          <Link to="/student">
+            <Button
+              className="btn btn-warning btn-block"
+              style={
+                {
+                  // color: "#E7B909",
+                  // backgroundColor: "#B02A30",
+                  // border: "none",
+                }
+              }
+            >
+              Return To DashBoard
+            </Button>
+          </Link>
         </Form>
       </Container>
       <AccessRestrictionModal body="You are not logged in. Please log in as a student to add post." />
