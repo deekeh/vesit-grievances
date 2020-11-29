@@ -60,14 +60,27 @@ const StudentAddPost = () => {
               ></Form.Control>
             </Form.Group>
           </Form.Row>
+          <br></br>
           <Form.Label>Description</Form.Label>
           <Form.Control
             name="description"
             required
             as="textarea"
+            rows="5"
             type="text"
             placeholder="Enter Description"
           ></Form.Control>
+
+          <Form.Group controlId="Priority">
+            <br></br>
+            <Form.Label>Set Priority</Form.Label>
+            <Form.Control as="select" required>
+              <option>Department</option>
+              <option>College</option>
+              <option>University</option>
+            </Form.Control>
+          </Form.Group>
+          <br></br>
           <Button
             block
             type="submit"
