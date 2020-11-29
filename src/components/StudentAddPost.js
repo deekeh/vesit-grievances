@@ -71,6 +71,7 @@ const StudentAddPost = () => {
           <Button
             block
             type="submit"
+            className="mt-4 btn-lg"
             style={{
               color: "#E7B909",
               backgroundColor: "#B02A30",

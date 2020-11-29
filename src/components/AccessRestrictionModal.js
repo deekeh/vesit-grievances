@@ -11,10 +11,7 @@ const AccessRestrictionModal = (props) => {
 
   useEffect(() => {
     if (localStorage.getItem("accessToken") == null) handleShow();
-  }, [show]);
-  // useEffect(() => {
-  //   if (localStorage.getItem('accessToken') == null) handleShow();
-  // })
+  }, []);
   return (
     <>
       {/* Show access restriction modal if user is not logged in */}
@@ -22,7 +19,7 @@ const AccessRestrictionModal = (props) => {
         show={show}
         onHide={handleClose}
         backdrop="static"
-        keyboard="true"
+        keyboard={false}
         size="lg"
         centered
       >

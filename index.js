@@ -80,6 +80,41 @@ app.post("/student/login", (req, res) => {
   );
 });
 
+// get posts
+app.get("/student/get-posts", (req, res) => {
+  const accessToken = req.body.accessToken;
+  jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(401);
+    try {
+      MongoClient.connect(
+        process.env.DB_URL,
+        { useUnifiedTopology: true },
+        async (err, client) => {
+          if (err) return console.log(err);
+          const db = client.db("vesit");
+          const collection = db.collection("studentPosts");
+          const posts = collection.find({
+            creator: user.email,
+          });
+          var responsePost = [];
+          await posts.forEach((post) => {
+            responsePost.push({
+              creator: user.email,
+              subject: post.subject,
+              department: post.department,
+              status: post.status,
+            });
+          });
+          res.status(200).send(responsePost);
+          client.close();
+        }
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  });
+});
+
 //Add-Post
 app.post("/student/add-post", async (req, res) => {
   const accessToken = req.body.accessToken;
@@ -90,6 +125,13 @@ app.post("/student/add-post", async (req, res) => {
       description: req.body.description,
       department: req.body.department,
       creator: user.email,
+      status: "pending",
+      messages: [
+        {
+          user: "student",
+          msg: req.body.description,
+        },
+      ],
     };
     try {
       MongoClient.connect(
