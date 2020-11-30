@@ -81,7 +81,7 @@ app.post("/student/login", (req, res) => {
 });
 
 // get posts
-app.get("/student/get-posts", (req, res) => {
+app.post("/student/get-posts", (req, res) => {
   const accessToken = req.body.accessToken;
   jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) return res.sendStatus(401);
@@ -99,9 +99,9 @@ app.get("/student/get-posts", (req, res) => {
           var responsePost = [];
           await posts.forEach((post) => {
             responsePost.push({
-              creator: user.email,
               subject: post.subject,
-              department: post.department,
+              description: post.description,
+              category: post.category,
               status: post.status,
             });
           });
@@ -123,6 +123,7 @@ app.post("/student/add-post", async (req, res) => {
     const postData = {
       subject: req.body.subject,
       description: req.body.description,
+      category: req.body.category,
       department: req.body.department,
       creator: user.email,
       status: "pending",

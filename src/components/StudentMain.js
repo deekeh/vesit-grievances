@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // components
 import Header from "./Header";
@@ -20,11 +20,16 @@ const Post = (props) => {
         }}
       >
         <h4>{props.postHead}</h4>
-        <span className="p-1 bg-light">{props.postCategory}</span>
+        <span className="p-1 bg-light font-weight-light font-italic">
+          {props.postCategory}
+        </span>
       </div>
       <div className="post-desc mt-2">{props.postDesc}</div>
       <div className="post-status d-flex mt-2">
-        <Link className="btn btn-warning ml-auto" to="/student/resolve">
+        <Link
+          className="btn btn-warning ml-auto text-capitalize"
+          to="/student/resolve"
+        >
           {props.postStatus}
         </Link>
       </div>
@@ -33,13 +38,29 @@ const Post = (props) => {
 };
 
 const StudentMain = () => {
-  // const [show, setShow] = useState(false);
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("accessToken") == null) handleShow();
-  // }, []);
+  // fetch student posts on page load
+  const [posts, setPosts] = useState([]);
+  const getPosts = async () => {
+    const userData = {
+      accessToken: localStorage.getItem("accessToken"),
+    };
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    };
+    const res = await fetch("/student/get-posts", options);
+    await res.json().then((result) => {
+      let p = [];
+      result.forEach((r) => p.push(r));
+      setPosts(p);
+    });
+  };
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   return (
     <>
@@ -75,37 +96,19 @@ const StudentMain = () => {
           </Link>
         </div>
         <hr />
-        <Post
-          postHead="Change of lecture timings"
-          postCategory="Academics"
-          postDesc="This is a sample text. Lorem ipsum dolor sit amet."
-          postStatus="Pending"
-        />
-        <Post
-          postHead="Lessening of break time"
-          postCategory="Time-table"
-          postDesc="This is a sample text. Lorem ipsum dolor sit amet."
-          postStatus="Pending"
-        />
+
+        {/* display student posts fetched on load */}
+        {posts.map((post) => (
+          <Post
+            postHead={post.subject}
+            postCategory={`Category: ${post.category}`}
+            postDesc={post.description}
+            postStatus={post.status}
+          />
+        ))}
       </Container>
 
       {/* Show access restriction modal if user is not logged in */}
-      {/* <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard="false"
-      >
-        <Modal.Header>
-          <Modal.Title>Access Restricted</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          You are not logged in. Please log in as a student to view dashboard.
-        </Modal.Body>
-        <Modal.Footer>
-          <Link to="/">Login</Link>
-        </Modal.Footer>
-      </Modal> */}
       <AccessRestrictionModal body="You are not logged in. Please log in as a student to view dashboard." />
     </>
   );
