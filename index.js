@@ -126,6 +126,12 @@ app.post("/student/add-post", async (req, res) => {
       department: req.body.department,
       creator: user.email,
       status: "pending",
+      level:
+        req.body.level === "Department"
+          ? 1
+          : req.body.level === "College"
+          ? 2
+          : 3,
       messages: [
         {
           user: "student",
