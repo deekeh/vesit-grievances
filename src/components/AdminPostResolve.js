@@ -4,7 +4,14 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 
 // bootstrap
-import { Container, Button,Form,Dropdown,ButtonGroup,DropdownButton} from "react-bootstrap";
+import {
+  Container,
+  Button,
+  Form,
+  Dropdown,
+  ButtonGroup,
+  DropdownButton,
+} from "react-bootstrap";
 
 const MessageBox = (props) => {
   return (
@@ -43,7 +50,7 @@ const AdminPostResolve = (props) => {
       <Header />
       <Container>
         <header className="mt-2">
-          <Link to ="/AdminMain">
+          <Link to="/AdminMain">
             <Button>Back</Button>
           </Link>
           <h3>Change of lecture timings</h3>
@@ -54,37 +61,52 @@ const AdminPostResolve = (props) => {
           userName={props.location.data.user}
           userMessage={props.location.data.description}
         />
-      <Form.Group controlId="Admin Reply" className="text-danger p-2 mb-0"
-        style={{
-          backgroundColor: "#FAF1CD",
-          border: "solid 1px #E7B909",
+        <MessageBox
+          userName="Admin"
+          userMessage={props.location.data.description}
+        />
+        <Form.Group
+          controlId="Admin Reply"
+          className="text-danger p-2 mb-0"
+          style={{
+            backgroundColor: "#FAF1CD",
+            border: "solid 1px #E7B909",
 
-          borderTopLeftRadius: "3px",
-          borderTopRightRadius: "3px"}}>
-            <Form.Label><h5><i>Admin Reply :</i></h5></Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Enter Your Message Here"
-              style={{
-                backgroundColor:"#fffbeb"
-              }}
-            ></Form.Control>
-          </Form.Group>
+            borderTopLeftRadius: "3px",
+            borderTopRightRadius: "3px",
+          }}
+        >
+          <Form.Control
+            required
+            type="text"
+            placeholder="Enter Your Message Here"
+            style={{
+              backgroundColor: "#fffbeb",
+            }}
+          ></Form.Control>
+        </Form.Group>
 
-        <div className="d-flex mb-4" style={{
-          paddingTop:"40px"
-        }}>
-        <div className="ml-auto">
-          <DropdownButton as={ButtonGroup} title ="Set Priority" id="bg-vertical-dropdown-1"className="mr-2">
-          <Dropdown.Item eventKey="1">Department</Dropdown.Item>
-          <Dropdown.Item eventKey="2">College</Dropdown.Item>
-          <Dropdown.Item eventKey="3">University</Dropdown.Item>
-          </DropdownButton>
+        <div
+          className="d-flex mb-4"
+          style={{
+            paddingTop: "20px",
+          }}
+        >
+          <div className="ml-auto">
+            <DropdownButton
+              as={ButtonGroup}
+              title="Set Priority"
+              id="bg-vertical-dropdown-1"
+              className="mr-2"
+            >
+              <Dropdown.Item eventKey="1">Department</Dropdown.Item>
+              <Dropdown.Item eventKey="2">College</Dropdown.Item>
+              <Dropdown.Item eventKey="3">University</Dropdown.Item>
+            </DropdownButton>
 
-          <Button className="btn btn-danger btn-lg px-5 ">
-            Add Reply
-          </Button>
+            <Button type="submit" className="btn btn-danger btn-lg px-5 ">
+              Add Reply
+            </Button>
           </div>
         </div>
       </Container>
