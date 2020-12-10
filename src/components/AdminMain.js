@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {Button, ButtonGroup, DropdownButton, Dropdown}  from "react-bootstrap";
+import { Button, ButtonGroup, DropdownButton, Dropdown } from "react-bootstrap";
 // components
 import Header from "./Header";
 
@@ -49,7 +49,7 @@ const AdminMain = () => {
       title: "Change of time table",
       description: "Lorem ipsum dolor sit amet",
       category: "Academics",
-      priority:"Department",
+      priority: "Department",
       studentName: "Abhishek Mishra",
       status: "Success",
     },
@@ -57,7 +57,7 @@ const AdminMain = () => {
       title: "Change of time table",
       description: "Lorem ipsum dolor sit amet",
       category: "Placements",
-      priority:"College",
+      priority: "College",
       studentName: "Sarvesh Dalvi",
       status: "Awaiting Response",
     },
@@ -65,7 +65,7 @@ const AdminMain = () => {
       title: "Change of time table",
       description: "Lorem ipsum dolor sit amet",
       category: "Examination",
-      priority:"College",
+      priority: "College",
       studentName: "Devansh Tailor",
       status: "Pending",
     },
@@ -73,7 +73,7 @@ const AdminMain = () => {
       title: "Fee payment",
       description: "Lorem ipsum dolor sit amet",
       category: "Marksheet",
-      priority:"University",
+      priority: "University",
       studentName: "Tony Stark",
       status: "Success",
     },
@@ -94,19 +94,34 @@ const AdminMain = () => {
           <h3>Top Grievances</h3>
           <hr />
           <div className="my-2">
-            <button className="btn btn-danger" onClick={getPosts}>
+            <Button variant="outline-danger" onClick={getPosts}>
               Get Posts
-            </button>
-            <DropdownButton as={ButtonGroup} title ="Sort By" id="bg-vertical-dropdown-1"style={{
-              paddingInline:"50px"
-             }}> 
-    <Dropdown.Item onClick={getPosts} eventKey="1">Academics</Dropdown.Item>
-    <Dropdown.Item onClick={getPosts} eventKey="2">Fees</Dropdown.Item>
-    <Dropdown.Item onClick={getPosts} eventKey="3">Examination</Dropdown.Item>
-    <Dropdown.Item onClick={getPosts} eventKey="4">Placements</Dropdown.Item>
-    <Dropdown.Item onClick={getPosts} eventKey="5">Priority</Dropdown.Item>
-    </DropdownButton>
-            </div>
+            </Button>
+            <DropdownButton
+              as={ButtonGroup}
+              title="Sort By"
+              id="bg-vertical-dropdown-1"
+              style={{
+                paddingInline: "50px",
+              }}
+            >
+              <Dropdown.Item onClick={getPosts} eventKey="1">
+                Academics
+              </Dropdown.Item>
+              <Dropdown.Item onClick={getPosts} eventKey="2">
+                Fees
+              </Dropdown.Item>
+              <Dropdown.Item onClick={getPosts} eventKey="3">
+                Examination
+              </Dropdown.Item>
+              <Dropdown.Item onClick={getPosts} eventKey="4">
+                Placements
+              </Dropdown.Item>
+              <Dropdown.Item onClick={getPosts} eventKey="5">
+                Priority
+              </Dropdown.Item>
+            </DropdownButton>
+          </div>
           <Table responsive bordered hover striped="True">
             <thead>
               <tr>
