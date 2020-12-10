@@ -38,6 +38,7 @@ const StudentAddPost = () => {
     };
 
     const res = await fetch("/student/add-post", options);
+
     console.log(res);
     if (res.status === 201) {
       setShow(true);
@@ -100,55 +101,31 @@ const StudentAddPost = () => {
             </Form.Group>
           </Form.Row>
 
+          <Form.Group controlId="Priority">
+            <br></br>
+            <Form.Label>Set Priority</Form.Label>
+            <Form.Control as="select" default Value="Select Priority" required>
+              <option>Department</option>
+              <option>College</option>
+              <option>University</option>
+            </Form.Control>
+          </Form.Group>
+          <br></br>
           <Form.Row>
-            <Form.Group as={Col} md={6} controlId="level">
-              <Form.Label>Set Priority</Form.Label>
-              <Form.Control
-                id="level"
-                as="select"
-                name="level"
-                required
-                placeholder="Select Priority"
+            <Form.Group as={Col} sm={12} controlId="">
+              <Button
+                block
+                type="submit"
+                className="btn btn-danger btn-lg my-1"
               >
-                <option>Department</option>
-                <option>College</option>
-                <option>University</option>
-              </Form.Control>
-            </Form.Group>
-            <Form.Group as={Col} md={6} controlId="category">
-              <Form.Label>Select Category</Form.Label>
-              <Form.Control
-                id="category"
-                as="select"
-                name="category"
-                required
-                placeholder="Select catogory of your grievance"
-              >
-                <option>Academics</option>
-                <option>Examination</option>
-                <option>Fees</option>
-                <option>Marksheets</option>
-                <option>Miscellaneous / Others</option>
-              </Form.Control>
+                Submit
+              </Button>
+              <br></br>
+              <Link className="btn btn-warning btn-lg my-1" to="/student">
+                Return To DashBoard
+              </Link>
             </Form.Group>
           </Form.Row>
-          <Button
-            className="btn btn-danger btn-block"
-            block
-            type="submit"
-            className="mt-4 btn-lg"
-            style={{
-              color: "#E7B909",
-              backgroundColor: "#B02A30",
-              border: "none",
-            }}
-          >
-            Submit
-          </Button>
-          <br></br>
-          <Link className="btn btn-warning btn-block btn-lg my-2" to="/student">
-            Return To DashBoard
-          </Link>
         </Form>
       </Container>
 

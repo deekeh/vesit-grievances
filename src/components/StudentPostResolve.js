@@ -6,45 +6,85 @@ import Header from "./Header";
 import AccessRestrictionModal from "./AccessRestrictionModal";
 
 // bootstrap
-import { Container } from "react-bootstrap";
+import { Container, Form, Button } from "react-bootstrap";
 
-const Resolve = () => {
+const MessageBox = (props) => {
+  return (
+    <div className="mb-4">
+      <h5
+        className="text-danger p-2 mb-0"
+        style={{
+          backgroundColor: "#FAF1CD",
+          border: "solid 1px #E7B909",
+          borderBottom: "hidden",
+          borderTopLeftRadius: "3px",
+          borderTopRightRadius: "3px",
+        }}
+      >
+        <i>{props.userName} Message :</i>
+      </h5>
+      <div
+        className="d-block p-4 mt-0 d-inline-block"
+        style={{
+          backgroundColor: "#FAF1CD",
+          border: "solid 1px #E7B909",
+          borderBottomLeftRadius: "3px",
+          borderBottomRightRadius: "3px",
+          borderTopRightRadius: "3px",
+        }}
+      >
+        {props.userMessage}
+      </div>
+    </div>
+  );
+};
+
+const Resolve = (props) => {
   return (
     <>
       <Header />
       <Container className="mt-2">
+        <b>Change Of Lecture Timings</b>
         <div>
           <h3
             style={{
               display: "inline-block",
             }}
           >
-            <b>Change Of Lecture Timings</b>
+            <MessageBox userName="Your" userMessage="" />
+            <MessageBox userName="Admin" userMessage="" />
           </h3>
         </div>
-        <hr />
-        <div className="mb-4">
-          <div>
-            <b>Your Query:</b>
-          </div>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus
-            viverra accumsan in nisl nisi.
-          </div>
+        <Form.Group
+          controlId="Student Reply"
+          className="text-danger p-2 mb-0"
+          style={{
+            backgroundColor: "#FAF1CD",
+            border: "solid 1px #E7B909",
+
+            borderTopLeftRadius: "3px",
+            borderTopRightRadius: "3px",
+          }}
+        >
+          <Form.Control
+            required
+            type="text"
+            placeholder="Enter Your Message Here"
+            style={{
+              backgroundColor: "#fffbeb",
+            }}
+          ></Form.Control>
+        </Form.Group>
+        <div
+          className="d-flex mb-4"
+          style={{
+            paddingTop: "20px",
+          }}
+        >
+          <Button type="submit" className="btn btn-danger btn-lg px-5 ">
+            Add Reply
+          </Button>
         </div>
-        <div className="mb-4">
-          <div>
-            <b>Admin Reply:</b>
-          </div>
-          <div>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Purus
-            viverra accumsan in nisl nisi.
-          </div>
-        </div>
-        <hr />
-        <div className="btn btn-success">Resolved</div>
       </Container>
       <AccessRestrictionModal body="You are not logged in. Please log in as a student to view your post." />
     </>
