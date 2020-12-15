@@ -124,6 +124,7 @@ app.post("/student/add-post", async (req, res) => {
       subject: req.body.subject,
       description: req.body.description,
       department: req.body.department,
+      category: req.body.category,
       creator: user.email,
       status: "pending",
       level:
