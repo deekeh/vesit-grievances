@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import { Link } from "react-router-dom";
 
 // bootstrap
 import { Container, Col, Form, Button } from "react-bootstrap";
@@ -91,6 +92,9 @@ const StudentRegister = () => {
             <Button type="submit" className="btn btn-danger btn-block">
               Submit
             </Button>
+            <Link className="btn btn-warning btn-1g my-4 btn-block" to="/">
+              Return To login page
+            </Link>
           </Form>
         </div>
       </Container>
