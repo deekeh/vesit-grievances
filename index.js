@@ -242,17 +242,25 @@ app.post("/admin/send-message", (req, res) => {
   const accessToken = req.body.accessToken;
   jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) return res.sendStatus(401);
-    MongoClient.connect(process.env.DB_URL, async (err, client) => {
-      const db = client.db("vesit");
-      const query = { creator: req.body.email };
-      const newValues = {
-        $set: { messages: req.body.message, status: "success" },
-      };
-      db.collection("studentPosts").updateOne(query, newValues, (req, res) => {
-        if (err) return console.log(err);
-        res.send({ status: "done" });
-      });
-    });
+    MongoClient.connect(
+      process.env.DB_URL,
+      { useUnifiedTopology: true },
+      async (err, client) => {
+        const db = client.db("vesit");
+        const query = { creator: req.body.email };
+        const newValues = {
+          $set: { messages: req.body.message, status: "success" },
+        };
+        db.collection("studentPosts").updateOne(
+          query,
+          newValues,
+          (err, resp) => {
+            if (err) return console.log(err);
+            res.send({ status: "done" });
+          }
+        );
+      }
+    );
   });
 });
 

@@ -54,6 +54,8 @@ const AdminPostResolve = (props) => {
       },
       body: JSON.stringify({
         accessToken: localStorage.getItem("accessToken"),
+        email: props.location.data.user,
+        message: e.target.message.value,
       }),
     };
     const response = await fetch("/admin/send-message", options);
@@ -96,6 +98,7 @@ const AdminPostResolve = (props) => {
             <Form.Control
               required
               type="text"
+              name="message"
               placeholder="Enter Your Message Here"
               style={{
                 backgroundColor: "#fffbeb",
