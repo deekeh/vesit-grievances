@@ -55,7 +55,7 @@ const Resolve = (props) => {
             <MessageBox userName="Admin" userMessage="" />
           </h3>
         </div>
-        <Form.Group
+        {/* <Form.Group
           controlId="Student Reply"
           className="text-danger p-2 mb-0"
           style={{
@@ -84,7 +84,7 @@ const Resolve = (props) => {
           <Button type="submit" className="btn btn-danger btn-lg px-5 ">
             Add Reply
           </Button>
-        </div>
+        </div> */}
       </Container>
       <AccessRestrictionModal body="You are not logged in. Please log in as a student to view your post." />
     </>
