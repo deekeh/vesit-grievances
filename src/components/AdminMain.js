@@ -44,45 +44,25 @@ const TableRow = (props) => {
 };
 
 const AdminMain = () => {
-  const posts = [
-    {
-      title: "Change of time table",
-      description: "Lorem ipsum dolor sit amet",
-      category: "Academics",
-      priority: "Department",
-      studentName: "Abhishek Mishra",
-      status: "Success",
-    },
-    {
-      title: "Change of time table",
-      description: "Lorem ipsum dolor sit amet",
-      category: "Placements",
-      priority: "College",
-      studentName: "Sarvesh Dalvi",
-      status: "Awaiting Response",
-    },
-    {
-      title: "Change of time table",
-      description: "Lorem ipsum dolor sit amet",
-      category: "Examination",
-      priority: "College",
-      studentName: "Devansh Tailor",
-      status: "Pending",
-    },
-    {
-      title: "Fee payment",
-      description: "Lorem ipsum dolor sit amet",
-      category: "Marksheet",
-      priority: "University",
-      studentName: "Tony Stark",
-      status: "Success",
-    },
-  ];
-
   const [postArray, setPostArray] = useState([]);
 
-  const getPosts = () => {
-    setPostArray(posts);
+  const getPosts = async () => {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        accessToken: localStorage.getItem("accessToken"),
+      }),
+    };
+    const response = await fetch("/admin/get-posts", options);
+    await response.json().then((result) => {
+      let p = [];
+      result.forEach((r) => p.push(r));
+      console.log(p);
+      setPostArray(p);
+    });
   };
 
   return (
@@ -130,7 +110,7 @@ const AdminMain = () => {
                 <th>Description</th>
                 <th>Category</th>
                 <th>Priority</th>
-                <th>Student Name</th>
+                <th>Creator</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -139,12 +119,13 @@ const AdminMain = () => {
                 <TableRow
                   key={index}
                   number={index + 1}
-                  title={item.title}
+                  title={item.subject}
                   description={item.description}
                   category={item.category}
-                  priority={item.priority}
-                  studentName={item.studentName}
+                  priority={item.level}
+                  studentName={item.creator}
                   status={item.status}
+                  messages={item.messages}
                 />
               ))}
             </tbody>

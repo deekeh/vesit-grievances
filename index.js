@@ -207,5 +207,40 @@ app.post("/admin/login", (req, res) => {
   );
 });
 
+app.post("/admin/get-posts", (req, res) => {
+  const accessToken = req.body.accessToken;
+  jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(401);
+    // let users = [];
+    MongoClient.connect(
+      process.env.DB_URL,
+      { useUnifiedTopology: true },
+      async (err, client) => {
+        if (err) return console.log(err);
+        const db = client.db("vesit");
+        db.collection("studentPosts")
+          .find({ status: "pending" })
+          .toArray((err, result) => {
+            let posts = [];
+            result.forEach((post) =>
+              posts.push({
+                subject: post.subject,
+                description: post.description,
+                category: post.category,
+                department: post.department,
+                creator: post.creator,
+                status: post.status,
+                level: post.level,
+              })
+            );
+            if (err) return console.log(err);
+            if (result == null) res.send({ status: "no posts found" });
+            res.send(posts);
+          });
+      }
+    );
+  });
+});
+
 const PORT = 2000 || process.env.PORT;
 app.listen(PORT, console.log(`Server started at port ${PORT}`));

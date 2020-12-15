@@ -50,7 +50,7 @@ const AdminPostResolve = (props) => {
       <Header />
       <Container>
         <header className="mt-2">
-          <Link to="/AdminMain">
+          <Link to="/admin">
             <Button>Back</Button>
           </Link>
           <h3>Change of lecture timings</h3>
@@ -61,10 +61,10 @@ const AdminPostResolve = (props) => {
           userName={props.location.data.user}
           userMessage={props.location.data.description}
         />
-        <MessageBox
+        {/* <MessageBox
           userName="Admin"
           userMessage={props.location.data.description}
-        />
+        /> */}
         <Form.Group
           controlId="Admin Reply"
           className="text-danger p-2 mb-0"
