@@ -46,6 +46,7 @@ const MessageBox = (props) => {
 
 const AdminPostResolve = (props) => {
   const sendMessage = async (e) => {
+    e.preventDefault();
     const options = {
       method: "POST",
       headers: {

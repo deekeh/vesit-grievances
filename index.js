@@ -244,7 +244,9 @@ app.post("/admin/send-message", (req, res) => {
     MongoClient.connect(process.env.DB_URL, async (err, client) => {
       const db = client.db("vesit");
       const query = { creator: req.body.email };
-      const newValues = { $set: { messages: req.body.message } };
+      const newValues = {
+        $set: { messages: req.body.message, status: "success" },
+      };
       db.collection("studentPosts").updateOne(query, newValues, (req, res) => {
         if (err) return console.log(err);
         res.send({ status: "done" });
