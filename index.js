@@ -123,7 +123,6 @@ app.post("/student/add-post", async (req, res) => {
     const postData = {
       subject: req.body.subject,
       description: req.body.description,
-      category: req.body.category,
       department: req.body.department,
       creator: user.email,
       status: "pending",
@@ -133,12 +132,7 @@ app.post("/student/add-post", async (req, res) => {
           : req.body.level === "College"
           ? 2
           : 3,
-      messages: [
-        {
-          user: "student",
-          msg: req.body.description,
-        },
-      ],
+      messages: "",
     };
     try {
       MongoClient.connect(
@@ -239,6 +233,23 @@ app.post("/admin/get-posts", (req, res) => {
           });
       }
     );
+  });
+});
+
+// admin - add message
+app.post("/admin/send-message", (req, res) => {
+  const accessToken = req.body.accessToken;
+  jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+    if (err) return res.sendStatus(401);
+    MongoClient.connect(process.env.DB_URL, async (err, client) => {
+      const db = client.db("vesit");
+      const query = { creator: req.body.email };
+      const newValues = { $set: { messages: req.body.message } };
+      db.collection("studentPosts").updateOne(query, newValues, (req, res) => {
+        if (err) return console.log(err);
+        res.send({ status: "done" });
+      });
+    });
   });
 });
 

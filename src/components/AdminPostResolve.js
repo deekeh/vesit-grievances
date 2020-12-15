@@ -45,6 +45,21 @@ const MessageBox = (props) => {
 };
 
 const AdminPostResolve = (props) => {
+  const sendMessage = async (e) => {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        accessToken: localStorage.getItem("accessToken"),
+      }),
+    };
+    const response = await fetch("/admin/send-message", options);
+    await response.json().then((result) => {
+      console.log("DONE");
+    });
+  };
   return (
     <>
       <Header />
@@ -65,50 +80,52 @@ const AdminPostResolve = (props) => {
           userName="Admin"
           userMessage={props.location.data.description}
         /> */}
-        <Form.Group
-          controlId="Admin Reply"
-          className="text-danger p-2 mb-0"
-          style={{
-            backgroundColor: "#FAF1CD",
-            border: "solid 1px #E7B909",
-
-            borderTopLeftRadius: "3px",
-            borderTopRightRadius: "3px",
-          }}
-        >
-          <Form.Control
-            required
-            type="text"
-            placeholder="Enter Your Message Here"
+        <Form onSubmit={sendMessage}>
+          <Form.Group
+            controlId="Admin Reply"
+            className="text-danger p-2 mb-0"
             style={{
-              backgroundColor: "#fffbeb",
+              backgroundColor: "#FAF1CD",
+              border: "solid 1px #E7B909",
+
+              borderTopLeftRadius: "3px",
+              borderTopRightRadius: "3px",
             }}
-          ></Form.Control>
-        </Form.Group>
+          >
+            <Form.Control
+              required
+              type="text"
+              placeholder="Enter Your Message Here"
+              style={{
+                backgroundColor: "#fffbeb",
+              }}
+            ></Form.Control>
+          </Form.Group>
 
-        <div
-          className="d-flex mb-4"
-          style={{
-            paddingTop: "20px",
-          }}
-        >
-          <div className="ml-auto">
-            <DropdownButton
-              as={ButtonGroup}
-              title="Set Priority"
-              id="bg-vertical-dropdown-1"
-              className="mr-2"
-            >
-              <Dropdown.Item eventKey="1">Department</Dropdown.Item>
-              <Dropdown.Item eventKey="2">College</Dropdown.Item>
-              <Dropdown.Item eventKey="3">University</Dropdown.Item>
-            </DropdownButton>
+          <div
+            className="d-flex mb-4"
+            style={{
+              paddingTop: "20px",
+            }}
+          >
+            <div className="ml-auto">
+              {/* <DropdownButton
+                as={ButtonGroup}
+                title="Set Priority"
+                id="bg-vertical-dropdown-1"
+                className="mr-2"
+              >
+                <Dropdown.Item eventKey="1">Department</Dropdown.Item>
+                <Dropdown.Item eventKey="2">College</Dropdown.Item>
+                <Dropdown.Item eventKey="3">University</Dropdown.Item>
+              </DropdownButton> */}
 
-            <Button type="submit" className="btn btn-danger btn-lg px-5 ">
-              Add Reply
-            </Button>
+              <Button type="submit" className="btn btn-danger btn-lg px-5 ">
+                Add Reply
+              </Button>
+            </div>
           </div>
-        </div>
+        </Form>
       </Container>
     </>
   );

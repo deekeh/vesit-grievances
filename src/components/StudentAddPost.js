@@ -24,7 +24,6 @@ const StudentAddPost = () => {
     const formData = {
       subject: e.target.subject.value,
       description: e.target.description.value,
-      category: e.target.category.value,
       department: e.target.department.value,
       level: e.target.level.value,
       accessToken: localStorage.getItem("accessToken"),
@@ -104,7 +103,13 @@ const StudentAddPost = () => {
           <Form.Group controlId="Priority">
             <br></br>
             <Form.Label>Set Priority</Form.Label>
-            <Form.Control as="select" default Value="Select Priority" required>
+            <Form.Control
+              name="level"
+              as="select"
+              default
+              Value="Select Priority"
+              required
+            >
               <option>Department</option>
               <option>College</option>
               <option>University</option>
