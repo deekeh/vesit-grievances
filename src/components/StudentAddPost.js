@@ -120,8 +120,10 @@ const StudentAddPost = () => {
               >
                 Submit
               </Button>
-              <br></br>
-              <Link className="btn btn-warning btn-lg my-1" to="/student">
+              <Link
+                className="btn btn-warning btn-1g my-4 btn-block"
+                to="/student"
+              >
                 Return To DashBoard
               </Link>
             </Form.Group>
