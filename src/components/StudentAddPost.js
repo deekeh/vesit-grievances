@@ -25,6 +25,7 @@ const StudentAddPost = () => {
       subject: e.target.subject.value,
       description: e.target.description.value,
       department: e.target.department.value,
+      category: e.target.category.value,
       level: e.target.level.value,
       accessToken: localStorage.getItem("accessToken"),
     };
@@ -99,25 +100,40 @@ const StudentAddPost = () => {
               ></Form.Control>
             </Form.Group>
           </Form.Row>
-
-          <Form.Group controlId="Priority">
-            <br></br>
-            <Form.Label>Set Priority</Form.Label>
-            <Form.Control
-              name="level"
-              as="select"
-              default
-              Value="Select Priority"
-              required
-            >
-              <option>Department</option>
-              <option>College</option>
-              <option>University</option>
-            </Form.Control>
-          </Form.Group>
-          <br></br>
           <Form.Row>
-            <Form.Group as={Col} sm={12} controlId="">
+            <Form.Group as={Col} md={6} controlId="Priority">
+              <Form.Label>Set Priority</Form.Label>
+              <Form.Control
+                name="level"
+                as="select"
+                default
+                Value="Select Priority"
+                required
+              >
+                <option>Department</option>
+                <option>College</option>
+                <option>University</option>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group as={Col} md={6} controlId="Category">
+              <Form.Label>Select Category</Form.Label>
+              <Form.Control
+                id="category"
+                as="select"
+                name="category"
+                required
+                placeholder="Select catogory of your grievance"
+              >
+                <option>Academics</option>
+                <option>Examination</option>
+                <option>Fees</option>
+                <option>Marksheets</option>
+                <option>Miscellaneous / Others</option>
+              </Form.Control>
+            </Form.Group>
+          </Form.Row>
+          <Form.Row>
+            <Form.Group as={Col} md={12} controlId="">
               <Button
                 block
                 type="submit"
