@@ -102,7 +102,7 @@ const StudentMain = () => {
           <Post
             postHead={post.subject}
             postCategory={`Category: ${post.category}`}
-            postDesc={post.description}
+            postDesc={post.description || post.messages}
             postStatus={post.status}
           />
         ))}

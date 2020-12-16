@@ -51,8 +51,8 @@ const Resolve = (props) => {
               display: "inline-block",
             }}
           >
-            <MessageBox userName="Your" userMessage="" />
-            <MessageBox userName="Admin" userMessage="" />
+            <MessageBox userName="Your" userMessage={props.description} />
+            <MessageBox userName="Admin" userMessage={props.message} />
           </h3>
         </div>
         {/* <Form.Group

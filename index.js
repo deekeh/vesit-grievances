@@ -2,6 +2,7 @@ require("dotenv").config();
 const path = require("path");
 const express = require("express");
 const app = express();
+const nodemailer = require("nodemailer");
 
 const MongoClient = require("mongodb").MongoClient;
 // const client = new MongoClient(process.env.DB_URL);
@@ -101,6 +102,7 @@ app.post("/student/get-posts", (req, res) => {
             responsePost.push({
               subject: post.subject,
               description: post.description,
+              message: post.messages,
               category: post.category,
               status: post.status,
             });
@@ -254,8 +256,39 @@ app.post("/admin/send-message", (req, res) => {
         db.collection("studentPosts").updateOne(
           query,
           newValues,
-          (err, resp) => {
+          async (err, resp) => {
             if (err) return console.log(err);
+
+            //NodeMailer
+
+            // let testAccount = await nodemailer.createTestAccount();
+
+            // create reusable transporter object using the default SMTP transport
+            let transporter = nodemailer.createTransport({
+              host: "smtp.gmail.com",
+              port: 587,
+              secure: false, // true for 465, false for other ports
+              auth: {
+                user: "alex440x@gmail.com", //this
+                pass: "amazarashi004june", // this
+              },
+            });
+
+            // send mail with defined transport object
+            let info = await transporter.sendMail({
+              from: "Vesit Admin<alex440x@gmail.com>", // sender address
+              to: req.body.email, // list of receivers
+              subject: "you have got a new mail from VESIT ADMIN", // Subject line
+              text: req.body.message, // plain text body
+            });
+
+            console.log("Message sent: %s", info.messageId);
+            // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+            // Preview only available when sending through an Ethereal account
+            console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+            // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+
             res.send({ status: "done" });
           }
         );
