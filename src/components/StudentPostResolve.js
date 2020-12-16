@@ -1,5 +1,5 @@
 import React from "react";
-//import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // components
 import Header from "./Header";
@@ -10,7 +10,7 @@ import { Container, Form, Button } from "react-bootstrap";
 
 const MessageBox = (props) => {
   return (
-    <div className="mb-4">
+    <div className="my-4">
       <h5
         className="text-danger p-2 mb-0"
         style={{
@@ -43,23 +43,16 @@ const Resolve = (props) => {
   return (
     <>
       <Header />
-      <Container className="mt-2">
-        <b>Change Of Lecture Timings</b>
+      <Container>
         <div>
-          <h3
-            style={{
-              display: "inline-block",
-            }}
-          >
-            <MessageBox
-              userName="Your"
-              userMessage={props.location.state.description}
-            />
-            <MessageBox
-              userName="Admin"
-              userMessage={props.location.state.message}
-            />
-          </h3>
+          <MessageBox
+            userName="Your"
+            userMessage={props.location.state.description}
+          />
+          <MessageBox
+            userName="Admin"
+            userMessage={props.location.state.message}
+          />
         </div>
         {/* <Form.Group
           controlId="Student Reply"
@@ -91,6 +84,11 @@ const Resolve = (props) => {
             Add Reply
           </Button>
         </div> */}
+        <header className="mt-2">
+          <Link to="/student">
+            <Button>Back</Button>
+          </Link>
+        </header>
       </Container>
       <AccessRestrictionModal body="You are not logged in. Please log in as a student to view your post." />
     </>

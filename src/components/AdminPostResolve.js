@@ -71,7 +71,6 @@ const AdminPostResolve = (props) => {
           <Link to="/admin">
             <Button>Back</Button>
           </Link>
-          <h3>Change of lecture timings</h3>
         </header>
         <hr />
 
