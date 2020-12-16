@@ -28,7 +28,13 @@ const Post = (props) => {
       <div className="post-status d-flex mt-2">
         <Link
           className="btn btn-warning ml-auto text-capitalize"
-          to="/student/resolve"
+          to={{
+            pathname: "/student/resolve",
+            state: {
+              description: props.postDesc,
+              message: props.postMessg,
+            },
+          }}
         >
           {props.postStatus}
         </Link>
@@ -102,7 +108,8 @@ const StudentMain = () => {
           <Post
             postHead={post.subject}
             postCategory={`Category: ${post.category}`}
-            postDesc={post.description || post.messages}
+            postDesc={post.description}
+            postMessg={post.message}
             postStatus={post.status}
           />
         ))}
