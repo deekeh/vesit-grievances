@@ -269,14 +269,14 @@ app.post("/admin/send-message", (req, res) => {
               port: 587,
               secure: false, // true for 465, false for other ports
               auth: {
-                user: "alex440x@gmail.com", //this
-                pass: "amazarashi004june", // this
+                user: process.env.MAIL_USER, //this
+                pass: process.env.MAIL_PASS, // this
               },
             });
 
             // send mail with defined transport object
             let info = await transporter.sendMail({
-              from: "Vesit Admin<alex440x@gmail.com>", // sender address
+              from: `Vesit Admin ${process.env.MAIL_USER}`, // sender address
               to: req.body.email, // list of receivers
               subject: "you have got a new mail from VESIT ADMIN", // Subject line
               text: req.body.message, // plain text body
